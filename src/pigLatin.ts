@@ -7,10 +7,20 @@
 // split string on space => get array of words
 // for each word - move first letter to the end
 //          add "ay" to the end of the word
+// check punctuation
 
 export function pigLatin(s: string): string {
-  // const words = s.split(" ");
-  // words.map(word => {})
-  // console.log(words);
-  return "";
+  if (s.length === 0) return "";
+
+  const words = s.split(" ");
+
+  const reLatinWord = /[a-zA-Z]/;
+
+  const newWords = words.map(word => {
+    if (!word.match(reLatinWord)) return word;
+
+    return word.substring(1) + word[0] + "ay";
+  });
+
+  return newWords.join(" ");
 }
